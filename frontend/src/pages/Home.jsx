@@ -9,19 +9,19 @@ import Create from '../components/Create';
 function Home() {
     const [todos, setTodo] = useState([])
     // const [done,Setdone] = useState()
-
+    const BACKEND_URL = import.meta.env.VITE_BECKEND_URL
     useEffect(() => {
-        axios.get('http://localhost:3001/api/get')
+        axios.get(BACKEND_URL+'/api/get')
             .then(result => setTodo(result.data))
             .catch(err => console.log(err))
     }, [])
     const getTodos = () => {
-        axios.get('http://localhost:3001/api/get')
+        axios.get(BACKEND_URL+'/api/get')
             .then(result => setTodo(result.data))
             .catch(err => console.log(err))
     }
     const onDelete = (id) => {
-        axios.delete(`http://localhost:3001/api/delete` + id)
+        axios.delete(`${BACKEND_URL}/api/delete` + id)
             .then(() => {
                 setTodo(prevTodos =>
                     prevTodos.filter(todo => todo._id !== id)
@@ -30,7 +30,7 @@ function Home() {
             .catch(err => console.log(err))
     }
     const handleEdit = (id) => {
-        axios.put(`http://localhost:3001/api/update/` + id)
+        axios.put(`https://todo-mern-app-lc1r.onrender.com/api/update/` + id)
             .then(result => {
                 setTodo(prevTodos => prevTodos.map(todo =>
                     todo._id === id

@@ -4,10 +4,10 @@ import axios from 'axios'
 
 function Create({ getTodos }) {
 
-
+    const BACKEND_URL = import.meta.env.VITE_BECKEND_URL
     const [task, setTask] = useState([])
     const AddTodo = () => {
-        axios.post('http://localhost:3001/api/add', { task: task })
+        axios.post(BACKEND_URL+'/api/add', { task: task })
             .then(result => {
                 getTodos()
                 setTask("")
