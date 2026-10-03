@@ -79,6 +79,7 @@ body {
 
 .through_line {
   text-decoration: line-through;
+  color: darkblue;
   /* background-color: greenyellow; */
 }
 
@@ -125,10 +126,10 @@ hr {
   height: 33px;
   padding: 0 3px;
   margin-bottom: 9px;
+  /* -webkit-text-stroke: .01px white  ; */
   color: black;
-
-
-
+  font-weight: 700;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
 .task-list div {
