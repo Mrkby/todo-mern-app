@@ -4,21 +4,28 @@ import Footer from '../components/Footer';
 import axios from 'axios'
 import Create from '../components/Create';
 
-// let PORT = process.env.PORT
 
 function Home() {
     const [todos, setTodo] = useState([])
-    // const [done,Setdone] = useState()
+     const [loading,setloading] = useState(true)
     const BACKEND_URL = import.meta.env.VITE_BECKEND_URL
     useEffect(() => {
         axios.get(BACKEND_URL+'/api/get')
-            .then(result => setTodo(result.data))
-            .catch(err => console.log(err))
+            getTodos()
     }, [])
-    const getTodos = () => {
-        axios.get(BACKEND_URL+'/api/get')
-            .then(result => setTodo(result.data))
-            .catch(err => console.log(err))
+    const getTodos = async () => {
+        try{ 
+            const response = await axios.get(BACKEND_URL+'/api/get')
+            setTodo(response.data)
+        }catch (err){
+             
+                console.log(err)
+             
+        }finally{
+            setloading(false)
+        }
+        
+            
     }
     const onDelete = (id) => {
         axios.delete(`${BACKEND_URL}/api/delete` + id)
