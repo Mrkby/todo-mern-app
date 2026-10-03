@@ -3,7 +3,7 @@ import { MdDarkMode} from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 
 function DarkMode(props) {
-const [darkMode,setDarkMode] = useState(false)
+const [darkMode,setDarkMode] = useState(true)
 const {handleTheme} = props
 
 
