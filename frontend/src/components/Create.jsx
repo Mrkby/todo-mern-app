@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { MdAddBox } from "react-icons/md";
 import axios from 'axios'
 
-function Create({ getTodos }) {
-
+function Create(props) {
+    const { getTodos,iconClr } = props;
     const BACKEND_URL = import.meta.env.VITE_BECKEND_URL
     const [task, setTask] = useState([])
     const AddTodo = () => {
@@ -21,6 +21,7 @@ function Create({ getTodos }) {
             <input type="text"
                 placeholder='Add new task'
                 value={task}
+
                 onChange={(e) => setTask(e.target.value)}
                 onKeyDown={(e) => {
                    if (task !== "") {
@@ -30,12 +31,12 @@ function Create({ getTodos }) {
                 }
                 }} />
 
-            <button className='add-btn'
+            <div className='add-btn'
                 onClick={() => {
                     if (task !== "") {
                         AddTodo()
                     }
-                }} > <MdAddBox /> </button>
+                }} > <MdAddBox className='add-icon'  style={{color : iconClr ? " black" : '#ffffffc0'}}/> </div>
 
         </div >
     )

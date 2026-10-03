@@ -3,11 +3,13 @@ import { MdDelete } from "react-icons/md";
 import Footer from '../components/Footer';
 import axios from 'axios'
 import Create from '../components/Create';
+import DarkMode from '../components/DarkMode';
 
 
 function Home() {
     const [todos, setTodo] = useState([])
      const [loading,setloading] = useState(true)
+     const [theme,setTheme] = useState()
     const BACKEND_URL = import.meta.env.VITE_BECKEND_URL
     useEffect(() => {
         axios.get(BACKEND_URL+'/api/get')
@@ -48,19 +50,26 @@ function Home() {
             })
             .catch(err => console.log(err));
     }
+    const handleDark = (e)=>{
+    setTheme(e)
+   
+}
+
+
     return (
         <>
-            <div className='container'>
-                <div className='box'>
+            <div className={`container ${theme ?  "ligth-background" : "dark-background"} ` } style={{backgroundColor : theme ? "white" : 'black'}}>
+               <DarkMode handleTheme={handleDark}/>
+                <div className='box' style={{ color: theme ? "black" : "white" }} >
                     <h1>Your To Do</h1>
-                    <Create getTodos={getTodos} />
+                    <Create getTodos={getTodos} iconClr ={theme} />
 
                     {
                         todos.length === 0 ?
                             <p> No Recoreded</p>
                             :
                             todos.map(todo => (
-                                <div className="task-list ">
+                                <div className={`task-list `}>
                                     <div className={todo.done ? "through_line" : "none"}   >
                                         <span className='checkbox'> <input type="checkbox"
                                             onChange={() => { handleEdit(todo._id) }}
@@ -77,7 +86,7 @@ function Home() {
 
                     }
                     <hr />
-                    <Footer />
+                    <Footer textCrl={theme}/>
                 </div>
             </div >
         </>
