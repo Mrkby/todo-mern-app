@@ -221,6 +221,9 @@ hr {
     padding-top: 150px;
 
   }
+  .box {
+    width: 350px;
+  }
 
   .Add-items {
     display: flex;
